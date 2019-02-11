@@ -121,7 +121,11 @@ class RandomWordsState extends State<RandomWords> {
 
   void _addItem() {
     Navigator.of(context).pushNamed('/router/second').then((value) {
+       
       setState(() {
+        if (value == null) {
+          return;
+        }
         if (list.length == 0) {
           list.add(value);
         } else {

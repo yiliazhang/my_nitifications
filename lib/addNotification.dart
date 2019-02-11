@@ -37,8 +37,12 @@ class _ExampleWidgetState extends State<ExampleWidget> {
   }
 
 void _done() {
+  if (_usernameController.text.length == 0||
+  _emailController.text.length == 0) {
+    return;
+  } 
   DateTime now = new DateTime.now();
-  DateTime.parse("2012-02-27 13:27:00");
+  // DateTime.parse("2012-02-27 13:27:00");
   var post = Post(
     title: _usernameController.text,
     author: _emailController.text,
