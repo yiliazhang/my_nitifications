@@ -58,34 +58,52 @@ class RandomWordsState extends State<RandomWords> {
 
   Widget _listItemBuilder(BuildContext context, int index) {
     final alreadySaved = _saved.contains(list[index]);
-    var _left = 100.0;
+    // var _left = 100.0;
     return 
-    Column(
-      children: <Widget>[
-        // AspectRatio(
-        //   aspectRatio: 16/9,
-        //   child: Image.network(list[index].imageUrl, fit: BoxFit.cover),
-        // ),
-        SizedBox(height: 16.0),
-        Text(
-          list[index].title,
-          style: Theme.of(context).textTheme.title,
-        ),
-        Text(
+Stack(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              // AspectRatio(
+              //   aspectRatio: 16/9,
+              //   child: Image.network(posts[index].imageUrl, fit: BoxFit.cover),
+              // ),
+              SizedBox(height: 16.0),
+              Text(
+                list[index].title,
+                style: Theme.of(context).textTheme.title,
+              ),
+               Text(
           list[index].createTime,
           style: Theme.of(context).textTheme.subhead,
         ),
-        Text(
-          list[index].author,
-          style: Theme.of(context).textTheme.subhead,
-        ),
+              Text(
+                list[index].author,
+                style: Theme.of(context).textTheme.subhead,
+              ),
         // IconButton(icon: new Icon(
         //   alreadySaved ? Icons.favorite : Icons.favorite_border,
         //   color: alreadySaved ? Colors.red : null,
         //   ), onPressed: _switchFavouriteOne),
-        SizedBox(height: 16.0)
-      ],
-    );
+              SizedBox(height: 16.0)
+            ],
+          ),
+          Positioned.fill(
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                splashColor: Colors.white.withOpacity(0.3),
+                highlightColor: Colors.white.withOpacity(0.1),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => PostDetail(post: posts[index])
+                  )
+                ),
+              ),
+            ),
+          )
+        ],
+      );
   }
 
   Widget _buildSuggestions() {
